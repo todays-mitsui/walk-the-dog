@@ -5,8 +5,6 @@ mod engine;
 // use rand::prelude::*;
 use serde::Deserialize;
 use std::collections::HashMap;
-use std::rc::Rc;
-use std::sync::Mutex;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 #[allow(unused_imports)]
