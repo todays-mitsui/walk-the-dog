@@ -3,7 +3,6 @@ use anyhow::{anyhow, Result};
 use async_trait::async_trait;
 use futures::channel::oneshot::channel;
 use std::cell::RefCell;
-use std::fmt::Result;
 use std::{rc::Rc, sync::Mutex};
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
@@ -69,8 +68,8 @@ impl GameLoop {
         let g = Rc::clone(&f);
 
         *g.borrow_mut() = Some(browser::create_raf_closure(move |perf: f64| {
-            game_loop.last_frame = perf;
             game_loop.accumulated_delta += (perf - game_loop.last_frame) as f32;
+            game_loop.last_frame = perf;
 
             while game_loop.accumulated_delta > FRAME_SIZE {
                 game.update();
